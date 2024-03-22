@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>安卓鍵盤滑鼠映射APP</title>
+    <title>Markdown 文件示例</title>
     <!-- 引入 Showdown.js 库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <style>
@@ -21,12 +21,6 @@
         /* 样式用于导航链接 */
         .nav-link {
             margin-bottom: 10px;
-            display: block; /* 确保链接占据整行 */
-            text-decoration: none; /* 移除默认的下划线样式 */
-            color: #333; /* 设置链接颜色 */
-        }
-        .nav-link:hover {
-            color: #666; /* 设置鼠标悬停时的链接颜色 */
         }
 
         /* 样式用于 Markdown 内容显示区域 */
@@ -39,10 +33,8 @@
 <body>
     <!-- 左侧导航栏 -->
     <div id="markdown-nav"></div>
-
     <!-- Markdown 内容显示区域 -->
     <div id="markdown-content"></div>
-
     <script>
         // 使用 fetch 加载 Markdown 文件
         fetch('./INST.md')
@@ -54,7 +46,6 @@
                 
                 // 在页面上显示转换后的 HTML
                 document.getElementById('markdown-content').innerHTML = html;
-        
                 // 提取 Markdown 中的标题，并创建导航栏链接
                 const headings = document.querySelectorAll('#markdown-content h1, #markdown-content h2');
                 const navElement = document.getElementById('markdown-nav');
@@ -65,6 +56,7 @@
                     link.textContent = text;
                     link.classList.add('nav-link');
                     link.href = `#${text.replace(/\s+/g, '-').toLowerCase()}`;
+                    navElement.appendChild(link);
                 });
             })
             .catch(error => console.error('Error fetching Markdown file:', error));
