@@ -10,21 +10,9 @@
         /* 全局样式 */
         body {
             font-family: Arial, sans-serif;
+            color:black;
             margin: 0;
             padding: 0;
-        }
-        /* 头部样式 */
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            height: 80;
-            width: 100%;
-            transition: top 0.3s; /* 添加过渡效果 */
-            z-index: 1000; /* 确保头部在最上层 */
         }
         h1 {
             margin: 0;
@@ -32,11 +20,9 @@
         /* 导航栏样式 */
         #markdown-nav {
             position: fixed;
-            left: 0;
             width: 200px;
-            height: calc(100% - 80px); /* 减去头部的高度 */
+            height: calc(100%); /* 减去头部的高度 */
             overflow-y: auto;
-            padding-left: 20px;
             background-color: #f4f4f4;
             transition: top 0.3s; /* 添加过渡效果 */
             z-index: 999; /* 确保导航栏在头部下面但在内容上面 */
@@ -56,7 +42,6 @@
         #markdown-content {
             margin-left: 220px;
             padding-left: 40px;
-            top: 100px; /* 头部高度 */
         }
         /* 文章标题样式 */
         h2, h3, h4, h5, h6 {
@@ -65,10 +50,6 @@
     </style>
 </head>
 <body>
-    <!-- 头部 -->
-    <header>
-        <h1>TsukiSama9292 - 鍵盤滑鼠映射大師</h1>
-    </header>
 
     <!-- 左侧导航栏 -->
     <div id="markdown-nav"></div>
@@ -114,21 +95,6 @@
                 });
             })
             .catch(error => console.error('Error fetching Markdown file:', error));
-
-        // 添加滚动事件处理程序
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            const nav = document.getElementById('markdown-nav');
-            if (window.scrollY > 0) {
-                header.style.top = '-80px'; // 向上滚动时隐藏头部
-                nav.style.top = '20px'; // 向上滚动时移动导航栏
-                document.getElementById('markdown-content').style.paddingTop = '20px'; // 向上滚动时移动内容区域的padding
-            } else {
-                header.style.top = '0'; // 向下滚动时显示头部
-                nav.style.top = '100px'; // 向下滚动时恢复导航栏位置
-                document.getElementById('markdown-content').style.paddingTop = '120px'; // 向下滚动时恢复内容区域的padding
-            }
-        });
     </script>
 </body>
 </html>
