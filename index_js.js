@@ -34,7 +34,9 @@ fetch('./INST.md')
             event.preventDefault();
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const headerHeight = document.querySelector('header').offsetHeight; // 獲取頭部高度
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight; // 計算目標位置，考慮頭部高度
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             }
         });
         // 在導航欄元素中添加連結

@@ -1,22 +1,42 @@
 /* 全域樣式 */
 body {
-    font-family: Arial, sans-serif; /* 設置字型為 Arial 或 sans-serif */
-    color: white; /* 設置文字顏色為白色 */
-    background-color: rgb(75, 75, 75); /* 設置背景色為 RGB(75, 75, 75) 即黑色 */
-    margin: 0; /* 邊距設為 0 */
-    padding: 0; /* 內距設為 0 */
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: rgb(75, 75, 75);
+    margin: 0;
+    padding: 0;
+    position: relative; /* 設置 body 的定位為相對定位 */
+}
+
+/* 頭部樣式 */
+header {
+    position: fixed; /* 將頭部設置為固定定位 */
+    top: 0; /* 固定在網頁頂部 */
+    left: 0;
+    width: 100%; /* 寬度佔滿整個網頁 */
+    height: 40px; /* 設置頭部高度為 40px */
+    background-color: #333;
+    color: white;
+    text-align: center;
+    line-height: 40px;
 }
 
 /* 導航欄樣式 */
 #markdown-nav {
-    position: fixed; /* 固定定位 */
-    top: 0; /* 與頂部距離為 0 */
-    left: 0; /* 與左側距離為 0 */
-    width: 200px; /* 寬度為 200px */
-    height: 100%; /* 高度與視窗高度相同 */
-    overflow-y: auto; /* 內容過長時啟用垂直滾動條 */
-    padding: 20px; /* 內邊距為 20px */
-    background-color: #222222; /* 背景色為深灰色 */
+    position: fixed;
+    top: 40px; /* 與頭部固定區域下方 40px 的位置對齊 */
+    left: 0;
+    width: 200px;
+    height: calc(100% - 40px); /* 高度減去頭部固定區域的高度 */
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #222222;
+}
+
+/* Markdown 內容顯示區域樣式 */
+#markdown-content {
+    margin-left: 260px;
+    margin-top: 40px; /* 與頭部固定區域下方 40px 的位置對齊 */
 }
 
 /* 導航連結樣式 */
@@ -52,7 +72,3 @@ body {
     padding-left: 50px; /* 左邊距為 50px */
 }
 
-/* Markdown 內容顯示區域樣式 */
-#markdown-content {
-    margin-left: 260px; /* 確保內容不會被導航欄遮擋，左邊距為 260px */
-}
