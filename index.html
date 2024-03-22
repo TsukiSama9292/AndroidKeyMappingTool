@@ -10,7 +10,7 @@
 
     <script>
         // 使用 fetch 加载 Markdown 文件
-        fetch('INST.md')
+        fetch('./INST.md')
             .then(response => response.text())
             .then(text => {
                 // 将 Markdown 文本转换为 HTML
