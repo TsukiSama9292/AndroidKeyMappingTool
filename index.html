@@ -23,6 +23,7 @@
             top: 0;
             width: 100%;
             z-index: 1000; /* 确保头部在最上层 */
+            transition: top 0.3s; /* 添加过渡效果 */
         }
         h1 {
             margin: 0;
@@ -112,6 +113,16 @@
                 });
             })
             .catch(error => console.error('Error fetching Markdown file:', error));
+
+        // 添加滚动事件处理程序
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 0) {
+                header.style.top = '-80px'; // 向上滚动时隐藏头部
+            } else {
+                header.style.top = '0'; // 向下滚动时显示头部
+            }
+        });
     </script>
 </body>
 </html>
