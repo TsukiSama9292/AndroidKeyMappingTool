@@ -24,31 +24,35 @@
             height: 100%;
             overflow-y: auto; /* 当内容过长时启用滚动条 */
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #222222;
         }
         /* 样式用于导航链接 */
         .nav-link {
             margin-bottom: 10px;
+            color: azure; /* 滑鼠移動時改變文字顏色 */
+            text-decoration: none; /* 移除連結底線 */
+        }
+        /* 滑鼠移動到左側標題上的特效 */
+        .nav-link:hover {
+            color: rgb(231, 42, 17); /* 滑鼠移動時改變文字顏色 */
+            background-color: azure; /* 滑鼠移動時改變背景色 */
+            border-radius: 5px; /* 添加圓角效果 */
+            padding: 5px; /* 增加內邊距 */
         }
         /* 缩进样式 */
         .nav-link.level-2 {
-            color: #555;
             padding-left: 10px;
         }
         .nav-link.level-3 {
-            color: #555;
             padding-left: 20px;
         }
         .nav-link.level-4 {
-            color: #555;
             padding-left: 30px;
         }
         .nav-link.level-5 {
-            color: #555;
             padding-left: 40px;
         }
         .nav-link.level-6 {
-            color: #555;
             padding-left: 50px;
         }
         /* 样式用于 Markdown 内容显示区域 */
@@ -97,6 +101,7 @@
                     });
                     navElement.appendChild(link);
                     // 添加換行
+                    navElement.appendChild(document.createElement('br'));
                     navElement.appendChild(document.createElement('br'));
                 });
             })
