@@ -40,8 +40,8 @@ header {
     left: -200px; /* 隱藏在左側 */
     width: 200px;
     height: 100%;
+    padding-top: 5px;
     overflow-y: auto;
-    padding: 20px;
     background-color: #222222;
     transition: left 0.3s ease; /* 添加左側位置變化的過渡效果 */
 }
@@ -56,8 +56,14 @@ header {
 
 /* Markdown 內容顯示區域樣式 */
 #markdown-content {
-    margin-left: 260px;
+    margin-left: 200px;
     margin-top: 40px; /* 與頭部固定區域下方 40px 的位置對齊 */
+    padding-left: 10px;
+    transition: margin-left 0.3s ease; /* 添加過渡效果 */
+}
+/* 導航欄收起時，Markdown 欄向左替補空間 */
+#markdown-nav:not(.active) ~ #markdown-content {
+    margin-left: 0; /* 收起導航欄時，將 margin-left 設置為 0 */
 }
 
 /* 導航連結樣式 */
