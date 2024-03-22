@@ -73,21 +73,24 @@
                 headings.forEach(heading => {
                     const level = parseInt(heading.tagName.charAt(1));
                     const text = heading.textContent.trim();
+                    const targetId = text.replace(/\s+/g, '-').toLowerCase();
+                    const divWrapper = document.createElement('div');
+                    divWrapper.id = targetId;
+                    heading.parentNode.insertBefore(divWrapper, heading); // 将 div 插入到标题前面
+                    divWrapper.appendChild(heading); // 将标题移动到 div 内部
                     const link = document.createElement('a');
                     link.textContent = text;
                     link.classList.add('nav-link', `level-${level}`);
-                    const targetId = text.replace(/\s+/g, '-').toLowerCase();
                     link.href = `#${targetId}`;
                     link.addEventListener('click', function(event) {
                         event.preventDefault(); // 阻止默认点击行为
                         const targetElement = document.getElementById(targetId); // 获取目标元素
                         if (targetElement) {
                             // 将目标元素滚动到视窗最上方
-                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
                     });
                     navElement.appendChild(link);
-                    heading.parentNode.id = targetId; // 将标题对应的div添加ID
                 });
             })
             .catch(error => console.error('Error fetching Markdown file:', error));
