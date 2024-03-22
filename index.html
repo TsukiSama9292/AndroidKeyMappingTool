@@ -7,7 +7,7 @@
     <!-- 引入 Showdown.js 库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <style>
-        /* 全局样式 */
+        /* 全局樣式 */
         body {
             font-family: Arial, sans-serif;
             color:black;
@@ -17,7 +17,7 @@
         h1 {
             margin: 0;
         }
-        /* 导航栏样式 */
+        /* 導覽欄樣式 */
         #markdown-nav {
             position: fixed;
             top : 0;
@@ -26,9 +26,9 @@
             padding-left: 20px;
             overflow-y: auto;
             background-color: #f4f4f4;
-            z-index: 999; /* 确保导航栏在头部下面但在内容上面 */
+            z-index: 999; /* 確保導覽欄在頭部下面但在內容上面 */
         }
-        /* 导航链接样式 */
+        /* 導覽連結樣式 */
         .nav-link {
             display: block;
             margin-bottom: 10px;
@@ -39,12 +39,12 @@
         .nav-link:hover {
             color: #555;
         }
-        /* Markdown 内容显示区域样式 */
+        /* Markdown 內容顯示區域樣式 */
         #markdown-content {
             margin-left: 220px;
             padding-left: 40px;
         }
-        /* 文章标题样式 */
+        /* 文章標題樣式 */
         h2, h3, h4, h5, h6 {
             color: #333;
         }
@@ -52,24 +52,24 @@
 </head>
 <body>
 
-    <!-- 左侧导航栏 -->
+    <!-- 左側導覽欄 -->
     <div id="markdown-nav"></div>
 
-    <!-- Markdown 内容显示区域 -->
+    <!-- Markdown 內容顯示區域 -->
     <div id="markdown-content"></div>
 
     <script>
-        // 使用 fetch 加载 Markdown 文件
+        // 使用 fetch 載入 Markdown 檔案
         fetch('./INST.md')
             .then(response => response.text())
             .then(text => {
-                // 将 Markdown 文本转换为 HTML
+                // 將 Markdown 文本轉換為 HTML
                 const converter = new showdown.Converter();
                 const html = converter.makeHtml(text);
                 
-                // 在页面上显示转换后的 HTML
+                // 在頁面上顯示轉換後的 HTML
                 document.getElementById('markdown-content').innerHTML = html;
-                // 提取 Markdown 中的标题，并创建导航栏链接
+                // 提取 Markdown 中的標題，並創建導覽欄連結
                 const headings = document.querySelectorAll('#markdown-content h2, #markdown-content h3, #markdown-content h4, #markdown-content h5, #markdown-content h6');
                 const navElement = document.getElementById('markdown-nav');
                 headings.forEach(heading => {
@@ -78,24 +78,24 @@
                     const targetId = text.replace(/\s+/g, '-').toLowerCase();
                     const divWrapper = document.createElement('div');
                     divWrapper.id = targetId;
-                    heading.parentNode.insertBefore(divWrapper, heading); // 将 div 插入到标题前面
-                    divWrapper.appendChild(heading); // 将标题移动到 div 内部
+                    heading.parentNode.insertBefore(divWrapper, heading); // 將 div 插入到標題前面
+                    divWrapper.appendChild(heading); // 將標題移動到 div 內部
                     const link = document.createElement('a');
                     link.textContent = text;
                     link.classList.add('nav-link', `level-${level}`);
                     link.href = `#${targetId}`;
                     link.addEventListener('click', function(event) {
-                        event.preventDefault(); // 阻止默认点击行为
-                        const targetElement = document.getElementById(targetId); // 获取目标元素
+                        event.preventDefault(); // 阻止默認點擊行為
+                        const targetElement = document.getElementById(targetId); // 獲取目標元素
                         if (targetElement) {
-                            // 将目标元素滚动到视窗最上方
+                            // 將目標元素滾動到視窗最上方
                             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
                     });
                     navElement.appendChild(link);
                 });
             })
-            .catch(error => console.error('Error fetching Markdown file:', error));
+            .catch(error => console.error('載入 Markdown 檔案時發生錯誤：', error));
     </script>
 </body>
 </html>
