@@ -71,10 +71,12 @@
                     link.classList.add('nav-link');
                     link.href = `#${text.replace(/\s+/g, '-').toLowerCase()}`;
 
-                    // 添加事件监听器，点击链接时滚动到标题所在位置
-                    link.addEventListener('click', () => {
-                        const target = document.querySelector(`#${text.replace(/\s+/g, '-').toLowerCase()}`);
-                        target.scrollIntoView({ behavior: 'smooth' });
+                    // 添加点击事件监听器，点击链接时滚动到标题所在位置
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault(); // 阻止默认链接行为
+                        const targetId = link.getAttribute('href').slice(1); // 获取目标标题的 ID
+                        const targetElement = document.getElementById(targetId); // 获取目标元素
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' }); // 平滑滚动到目标元素的顶部
                     });
 
                     navElement.appendChild(link);
