@@ -22,7 +22,22 @@
         .nav-link {
             margin-bottom: 10px;
         }
-
+        /* 缩进样式 */
+        .nav-link.level-2 {
+            padding-left: 10px;
+        }
+        .nav-link.level-3 {
+            padding-left: 20px;
+        }
+        .nav-link.level-4 {
+            padding-left: 30px;
+        }
+        .nav-link.level-5 {
+            padding-left: 40px;
+        }
+        .nav-link.level-6 {
+            padding-left: 50px;
+        }
         /* 样式用于 Markdown 内容显示区域 */
         #markdown-content {
             margin-left: 220px; /* 确保内容不会被导航栏遮挡 */
@@ -47,14 +62,14 @@
                 // 在页面上显示转换后的 HTML
                 document.getElementById('markdown-content').innerHTML = html;
                 // 提取 Markdown 中的标题，并创建导航栏链接
-                const headings = document.querySelectorAll('#markdown-content h1, #markdown-content h2');
+                const headings = document.querySelectorAll('#markdown-content h2, #markdown-content h3, #markdown-content h4, #markdown-content h5, #markdown-content h6');
                 const navElement = document.getElementById('markdown-nav');
                 headings.forEach(heading => {
-                    const level = heading.tagName.toLowerCase();
+                    const level = parseInt(heading.tagName.charAt(1));
                     const text = heading.textContent.trim();
                     const link = document.createElement('a');
                     link.textContent = text;
-                    link.classList.add('nav-link');
+                    link.classList.add('nav-link', `level-${level}`);
                     link.href = `#${text.replace(/\s+/g, '-').toLowerCase()}`;
                     navElement.appendChild(link);
                 });
