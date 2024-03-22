@@ -7,6 +7,10 @@ body {
     padding: 0;
     position: relative; /* 設置 body 的定位為相對定位 */
 }
+/* 隱藏原生滾動條 */
+body::-webkit-scrollbar {
+    display: none;
+}
 
 /* 頭部樣式 */
 header {
@@ -38,10 +42,12 @@ header {
     position: fixed;
     top: 40px; /* 考慮到頭部高度 */
     left: -200px; /* 隱藏在左側 */
+    overflow-y: auto; /* 將 overflow-y 設置為 auto，需要的時候自動開啟滾動條 */
+    scrollbar-width: thin; /* 使用細的滾動條 */
+    scrollbar-color: #888 transparent; /* 設置滾動條顏色 */
     width: 200px;
-    height: 100%;
+    height: 100%; /* 限制高度，觸發滾動條 */
     padding-top: 5px;
-    overflow-y: auto;
     background-color: #222222;
     transition: left 0.3s ease; /* 添加左側位置變化的過渡效果 */
 }
@@ -56,10 +62,24 @@ header {
 
 /* Markdown 內容顯示區域樣式 */
 #markdown-content {
+    overflow-y:scroll;
     margin-left: 200px;
     margin-top: 40px; /* 與頭部固定區域下方 40px 的位置對齊 */
     padding-left: 10px;
     transition: margin-left 0.3s ease; /* 添加過渡效果 */
+}
+/* 自定義滾動條 */
+#markdown-content::-webkit-scrollbar {
+    width: 8px; /* 滾動條寬度 */
+}
+
+#markdown-content::-webkit-scrollbar-thumb {
+    background-color: #cccccc; /* 滑塊顏色 */
+    border-radius: 4px; /* 滑塊邊角半徑 */
+}
+
+#markdown-content::-webkit-scrollbar-track {
+    background-color: transparent; /* 背景色 */
 }
 /* 導航欄收起時，Markdown 欄向左替補空間 */
 #markdown-nav:not(.active) ~ #markdown-content {
