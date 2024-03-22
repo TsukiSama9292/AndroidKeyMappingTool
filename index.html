@@ -3,61 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TsukiSama9292 - 鍵盤滑鼠映射大師</title>
+    <title>Markdown 文件示例</title>
     <!-- 引入 Showdown.js 库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <style>
-        /* 全局樣式 */
+        /* 全局样式 */
         body {
             font-family: Arial, sans-serif;
-            color:black;
+            color: white; /* 設置文字顏色為白色 */
+            background-color: rgb(75, 75, 75); /* 設置背景色為黑色 */
             margin: 0;
             padding: 0;
         }
-        h1 {
-            margin: 0;
-        }
-        /* 導覽欄樣式 */
+        /* 样式用于导航栏 */
         #markdown-nav {
             position: fixed;
-            top : 0;
-            width: 200px;
-            padding-top: 40px;
-            padding-left: 20px;
-            overflow-y: auto;
+            top: 0;
+            left: 0;
+            width: 200px; /* 左侧导航栏的宽度 */
+            height: 100%;
+            overflow-y: auto; /* 当内容过长时启用滚动条 */
+            padding: 20px;
             background-color: #f4f4f4;
-            z-index: 999; /* 確保導覽欄在頭部下面但在內容上面 */
         }
-        /* 導覽連結樣式 */
+        /* 样式用于导航链接 */
         .nav-link {
-            display: block;
             margin-bottom: 10px;
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s ease;
         }
-        .nav-link:hover {
+        /* 缩进样式 */
+        .nav-link.level-2 {
             color: #555;
+            padding-left: 10px;
         }
-        /* Markdown 內容顯示區域樣式 */
-        #markdown-content {
-            margin-left: 220px;
+        .nav-link.level-3 {
+            color: #555;
+            padding-left: 20px;
+        }
+        .nav-link.level-4 {
+            color: #555;
+            padding-left: 30px;
+        }
+        .nav-link.level-5 {
+            color: #555;
             padding-left: 40px;
         }
-        /* 文章標題樣式 */
-        h2, h3, h4, h5, h6 {
-            color: #333;
+        .nav-link.level-6 {
+            color: #555;
+            padding-left: 50px;
+        }
+        /* 样式用于 Markdown 内容显示区域 */
+        #markdown-content {
+            margin-left: 260px; /* 确保内容不会被导航栏遮挡 */
         }
     </style>
 </head>
 <body>
-
-    <!-- 左側導覽欄 -->
+    <!-- 左侧导航栏 -->
     <div id="markdown-nav"></div>
-
-    <!-- Markdown 內容顯示區域 -->
+    <!-- Markdown 内容显示区域 -->
     <div id="markdown-content"></div>
-
     <script>
         // 使用 fetch 載入 Markdown 檔案
         fetch('./INST.md')
@@ -66,10 +70,9 @@
                 // 將 Markdown 文本轉換為 HTML
                 const converter = new showdown.Converter();
                 const html = converter.makeHtml(text);
-                
                 // 在頁面上顯示轉換後的 HTML
                 document.getElementById('markdown-content').innerHTML = html;
-                // 提取 Markdown 中的標題，並創建導覽欄連結
+                // 提取 Markdown 中的標題，並創建導航欄連結
                 const headings = document.querySelectorAll('#markdown-content h2, #markdown-content h3, #markdown-content h4, #markdown-content h5, #markdown-content h6');
                 const navElement = document.getElementById('markdown-nav');
                 headings.forEach(heading => {
@@ -93,6 +96,8 @@
                         }
                     });
                     navElement.appendChild(link);
+                    // 添加換行
+                    navElement.appendChild(document.createElement('br'));
                 });
             })
             .catch(error => console.error('載入 Markdown 檔案時發生錯誤：', error));
