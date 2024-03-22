@@ -3,59 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TsukiSama9292-key&MouseMapper</title>
+    <title>TsukiSama9292 - 鍵盤滑鼠映射大師</title>
     <!-- 引入 Showdown.js 库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <style>
-        /* 样式用于导航栏 */
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* 头部样式 */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        /* 导航栏样式 */
         #markdown-nav {
             position: fixed;
-            top: 0;
+            top: 60px;
             left: 0;
-            width: 200px; /* 左侧导航栏的宽度 */
-            height: 100%;
-            overflow-y: auto; /* 当内容过长时启用滚动条 */
+            width: 200px;
+            height: calc(100% - 60px);
+            overflow-y: auto;
             padding: 20px;
             background-color: #f4f4f4;
         }
-        /* 样式用于导航链接 */
+        /* 导航链接样式 */
         .nav-link {
             display: block;
             margin-bottom: 10px;
-            word-wrap: break-word; /* 长标题换行 */
-            white-space: normal; /* 强制换行 */
-            text-decoration: none;
             color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-        /* 缩进样式 */
-        .nav-link.level-2 {
-            padding-left: 10px;
+        .nav-link:hover {
+            color: #555;
         }
-        .nav-link.level-3 {
-            padding-left: 20px;
-        }
-        .nav-link.level-4 {
-            padding-left: 30px;
-        }
-        .nav-link.level-5 {
-            padding-left: 40px;
-        }
-        .nav-link.level-6 {
-            padding-left: 50px;
-        }
-        /* 样式用于 Markdown 内容显示区域 */
+        /* Markdown 内容显示区域样式 */
         #markdown-content {
-            margin-left: 220px; /* 左侧导航栏宽度加上一些间隔 */
+            margin-left: 220px;
             padding: 20px;
-            padding-top: 0px; /* 确保内容在导航栏下面显示 */
+            padding-top: 60px;
+        }
+        /* 文章标题样式 */
+        h2, h3, h4, h5, h6 {
+            color: #333;
         }
     </style>
 </head>
 <body>
+    <!-- 头部 -->
+    <header>
+        <h1>TsukiSama9292 - 鍵盤滑鼠映射大師</h1>
+    </header>
+
     <!-- 左侧导航栏 -->
     <div id="markdown-nav"></div>
+
     <!-- Markdown 内容显示区域 -->
     <div id="markdown-content"></div>
+
     <script>
         // 使用 fetch 加载 Markdown 文件
         fetch('./INST.md')
