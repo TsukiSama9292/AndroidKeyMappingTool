@@ -20,11 +20,12 @@
         /* 导航栏样式 */
         #markdown-nav {
             position: fixed;
+            top : 0;
             width: 200px;
-            height: calc(100%); /* 减去头部的高度 */
+            padding-top: 40px;
+            padding-left: 20px;
             overflow-y: auto;
             background-color: #f4f4f4;
-            transition: top 0.3s; /* 添加过渡效果 */
             z-index: 999; /* 确保导航栏在头部下面但在内容上面 */
         }
         /* 导航链接样式 */
