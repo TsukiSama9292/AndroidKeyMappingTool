@@ -1,0 +1,58 @@
+/* 全域樣式 */
+body {
+    font-family: Arial, sans-serif; /* 設置字型為 Arial 或 sans-serif */
+    color: white; /* 設置文字顏色為白色 */
+    background-color: rgb(75, 75, 75); /* 設置背景色為 RGB(75, 75, 75) 即黑色 */
+    margin: 0; /* 邊距設為 0 */
+    padding: 0; /* 內距設為 0 */
+}
+
+/* 導航欄樣式 */
+#markdown-nav {
+    position: fixed; /* 固定定位 */
+    top: 0; /* 與頂部距離為 0 */
+    left: 0; /* 與左側距離為 0 */
+    width: 200px; /* 寬度為 200px */
+    height: 100%; /* 高度與視窗高度相同 */
+    overflow-y: auto; /* 內容過長時啟用垂直滾動條 */
+    padding: 20px; /* 內邊距為 20px */
+    background-color: #222222; /* 背景色為深灰色 */
+}
+
+/* 導航連結樣式 */
+.nav-link {
+    margin-bottom: 10px; /* 底邊距為 10px */
+    color: azure; /* 設置文字顏色為 azure (淺藍色) */
+    text-decoration: none; /* 移除連結底線 */
+    font-weight: bold; /* 將字體設置為粗體 */
+}
+
+/* 滑鼠移動到左側標題上的特效 */
+.nav-link:hover {
+    color: rgb(231, 42, 17); /* 滑鼠移動時改變文字顏色為 RGB(231, 42, 17) 即深紅色 */
+    background-color: azure; /* 滑鼠移動時改變背景色為 azure (淺藍色) */
+    border-radius: 5px; /* 添加圓角效果 */
+    padding: 5px; /* 增加內邊距為 5px */
+}
+
+/* 縮排樣式 */
+.nav-link.level-2 {
+    padding-left: 10px; /* 左邊距為 10px */
+}
+.nav-link.level-3 {
+    padding-left: 20px; /* 左邊距為 20px */
+}
+.nav-link.level-4 {
+    padding-left: 30px; /* 左邊距為 30px */
+}
+.nav-link.level-5 {
+    padding-left: 40px; /* 左邊距為 40px */
+}
+.nav-link.level-6 {
+    padding-left: 50px; /* 左邊距為 50px */
+}
+
+/* Markdown 內容顯示區域樣式 */
+#markdown-content {
+    margin-left: 260px; /* 確保內容不會被導航欄遮擋，左邊距為 260px */
+}

@@ -3,110 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown 文件示例</title>
+    <title>TsukiSama9292 - 鍵盤滑鼠映射安卓APP</title>
     <!-- 引入 Showdown.js 库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-    <style>
-        /* 全局样式 */
-        body {
-            font-family: Arial, sans-serif;
-            color: white; /* 設置文字顏色為白色 */
-            background-color: rgb(75, 75, 75); /* 設置背景色為黑色 */
-            margin: 0;
-            padding: 0;
-        }
-        /* 样式用于导航栏 */
-        #markdown-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200px; /* 左侧导航栏的宽度 */
-            height: 100%;
-            overflow-y: auto; /* 当内容过长时启用滚动条 */
-            padding: 20px;
-            background-color: #222222;
-        }
-        /* 样式用于导航链接 */
-        .nav-link {
-            margin-bottom: 10px;
-            color: azure; /* 滑鼠移動時改變文字顏色 */
-            text-decoration: none; /* 移除連結底線 */
-            font-weight: bold; /* 將字體設置為粗體 */
-        }
-        /* 滑鼠移動到左側標題上的特效 */
-        .nav-link:hover {
-            color: rgb(231, 42, 17); /* 滑鼠移動時改變文字顏色 */
-            background-color: azure; /* 滑鼠移動時改變背景色 */
-            border-radius: 5px; /* 添加圓角效果 */
-            padding: 5px; /* 增加內邊距 */
-        }
-        /* 缩进样式 */
-        .nav-link.level-2 {
-            padding-left: 10px;
-        }
-        .nav-link.level-3 {
-            padding-left: 20px;
-        }
-        .nav-link.level-4 {
-            padding-left: 30px;
-        }
-        .nav-link.level-5 {
-            padding-left: 40px;
-        }
-        .nav-link.level-6 {
-            padding-left: 50px;
-        }
-        /* 样式用于 Markdown 内容显示区域 */
-        #markdown-content {
-            margin-left: 260px; /* 确保内容不会被导航栏遮挡 */
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="index_md.css">
 </head>
 <body>
     <!-- 左侧导航栏 -->
     <div id="markdown-nav"></div>
     <!-- Markdown 内容显示区域 -->
     <div id="markdown-content"></div>
-    <script>
-        // 使用 fetch 載入 Markdown 檔案
-        fetch('./INST.md')
-            .then(response => response.text())
-            .then(text => {
-                // 將 Markdown 文本轉換為 HTML
-                const converter = new showdown.Converter();
-                const html = converter.makeHtml(text);
-                // 在頁面上顯示轉換後的 HTML
-                document.getElementById('markdown-content').innerHTML = html;
-                // 提取 Markdown 中的標題，並創建導航欄連結
-                const headings = document.querySelectorAll('#markdown-content h2, #markdown-content h3, #markdown-content h4, #markdown-content h5, #markdown-content h6');
-                const navElement = document.getElementById('markdown-nav');
-                headings.forEach(heading => {
-                    const level = parseInt(heading.tagName.charAt(1));
-                    const text = heading.textContent.trim();
-                    const targetId = text.replace(/\s+/g, '-').toLowerCase();
-                    const divWrapper = document.createElement('div');
-                    divWrapper.id = targetId;
-                    heading.parentNode.insertBefore(divWrapper, heading); // 將 div 插入到標題前面
-                    divWrapper.appendChild(heading); // 將標題移動到 div 內部
-                    const link = document.createElement('a');
-                    link.textContent = text;
-                    link.classList.add('nav-link', `level-${level}`);
-                    link.href = `#${targetId}`;
-                    link.addEventListener('click', function(event) {
-                        event.preventDefault(); // 阻止默認點擊行為
-                        const targetElement = document.getElementById(targetId); // 獲取目標元素
-                        if (targetElement) {
-                            // 將目標元素滾動到視窗最上方
-                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    });
-                    navElement.appendChild(link);
-                    // 添加換行
-                    navElement.appendChild(document.createElement('br'));
-                    navElement.appendChild(document.createElement('br'));
-                });
-            })
-            .catch(error => console.error('載入 Markdown 檔案時發生錯誤：', error));
-    </script>
+    <script src="index_js.js"></script>
 </body>
 </html>
