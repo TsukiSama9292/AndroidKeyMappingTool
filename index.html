@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown 文件示例</title>
+</head>
+<body>
+    <div id="markdown-content"></div>
+
+    <script>
+        // 使用 fetch 加载 Markdown 文件
+        fetch('INST.md')
+            .then(response => response.text())
+            .then(text => {
+                // 将 Markdown 文本转换为 HTML
+                const converter = new showdown.Converter();
+                const html = converter.makeHtml(text);
+                
+                // 在页面上显示转换后的 HTML
+                document.getElementById('markdown-content').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching Markdown file:', error));
+    </script>
+</body>
+</html>
