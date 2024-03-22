@@ -48,3 +48,15 @@ fetch('./INST.md')
 })
 // 如果在獲取 Markdown 檔案時出現錯誤，則在控制台中輸出錯誤訊息
 .catch(error => console.error('載入 Markdown 檔案時發生錯誤：', error));
+
+// 獲取按鈕和導航欄元素
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('markdown-nav');
+
+// 為按鈕添加點擊事件監聽器
+navToggle.addEventListener('click', function() {
+    // 切換按鈕的 active class
+    navToggle.classList.toggle('active');
+    // 切換導航欄的顯示狀態
+    navMenu.classList.toggle('active');
+});

@@ -20,17 +20,38 @@ header {
     text-align: center;
     line-height: 40px;
 }
+/* 導航欄按鈕樣式 */
+#nav-toggle {
+    font-weight: bold; /* 將文字設置為粗體 */
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-/* 導航欄樣式 */
+/* 左側導航欄樣式 */
 #markdown-nav {
     position: fixed;
-    top: 40px; /* 與頭部固定區域下方 40px 的位置對齊 */
-    left: 0;
+    top: 40px; /* 考慮到頭部高度 */
+    left: -200px; /* 隱藏在左側 */
     width: 200px;
-    height: calc(100% - 40px); /* 高度減去頭部固定區域的高度 */
+    height: 100%;
     overflow-y: auto;
     padding: 20px;
     background-color: #222222;
+    transition: left 0.3s ease; /* 添加左側位置變化的過渡效果 */
+}
+/* 按鈕開啟導航欄時的動畫效果 */
+#nav-toggle.active + #markdown-nav {
+    left: 0;
+}
+/* 導航欄顯示狀態 */
+#markdown-nav.active {
+    left: 0;
 }
 
 /* Markdown 內容顯示區域樣式 */
