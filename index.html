@@ -21,6 +21,12 @@
         /* 样式用于导航链接 */
         .nav-link {
             margin-bottom: 10px;
+            display: block; /* 确保链接占据整行 */
+            text-decoration: none; /* 移除默认的下划线样式 */
+            color: #333; /* 设置链接颜色 */
+        }
+        .nav-link:hover {
+            color: #666; /* 设置鼠标悬停时的链接颜色 */
         }
 
         /* 样式用于 Markdown 内容显示区域 */
@@ -59,6 +65,13 @@
                     link.textContent = text;
                     link.classList.add('nav-link');
                     link.href = `#${text.replace(/\s+/g, '-').toLowerCase()}`;
+
+                    // 添加事件监听器，点击链接时滚动到标题所在位置
+                    link.addEventListener('click', () => {
+                        const target = document.querySelector(`#${text.replace(/\s+/g, '-').toLowerCase()}`);
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    });
+
                     navElement.appendChild(link);
                 });
             })
