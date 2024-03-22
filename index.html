@@ -4,10 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown 文件示例</title>
-    <!-- 引入 Showdown.js 库 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <style>
+        /* 样式用于导航栏 */
+        #markdown-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px; /* 左侧导航栏的宽度 */
+            height: 100%;
+            overflow-y: auto; /* 当内容过长时启用滚动条 */
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        /* 样式用于导航链接 */
+        .nav-link {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
+    <!-- 左侧导航栏 -->
+    <div id="markdown-nav"></div>
+
+    <!-- Markdown 内容显示区域 -->
     <div id="markdown-content"></div>
 
     <script>
@@ -21,6 +40,19 @@
                 
                 // 在页面上显示转换后的 HTML
                 document.getElementById('markdown-content').innerHTML = html;
+
+                // 提取 Markdown 中的标题，并创建导航栏链接
+                const headings = document.querySelectorAll('#markdown-content h1, #markdown-content h2');
+                const navElement = document.getElementById('markdown-nav');
+                headings.forEach(heading => {
+                    const level = heading.tagName.toLowerCase();
+                    const text = heading.textContent.trim();
+                    const link = document.createElement('a');
+                    link.textContent = text;
+                    link.classList.add('nav-link');
+                    link.href = `#${text.replace(/\s+/g, '-').toLowerCase()}`;
+                    navElement.appendChild(link);
+                });
             })
             .catch(error => console.error('Error fetching Markdown file:', error));
     </script>
