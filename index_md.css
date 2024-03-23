@@ -14,6 +14,7 @@ body::-webkit-scrollbar {
 
 /* 頭部樣式 */
 header {
+    font-weight: bold; /* 將文字設置為粗體 */
     position: fixed; /* 將頭部設置為固定定位 */
     top: 0; /* 固定在網頁頂部 */
     left: 0;
