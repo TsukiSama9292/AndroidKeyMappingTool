@@ -32,7 +32,6 @@
 <<<<<<< HEAD
 本應用程式現階段只支援安卓ARM64，安卓版本11~14，且發布平台為Google Play Store，且所有功能完全免費，也沒有投放廣告。  
 若有看到圖示與名稱與本應用程式相同/相似，但支援IOS或其他安卓版本，任何的收費模式，皆非原作者TsukiSama9292製作的應用程式。
->>>>>>> e9db3f7e0648e5a73fd020d5d6459d72e6097421
 強烈建議從Google Play Store官方渠道下載並安裝。  
 ![aboutPhone](/aboutPhone.png)
 
