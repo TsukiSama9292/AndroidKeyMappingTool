@@ -7,6 +7,18 @@ fetch('./INST.md')
     const html = converter.makeHtml(text);
     // 將轉換後的 HTML 內容顯示在 id 為 'markdown-content' 的元素中
     document.getElementById('markdown-content').innerHTML = html;
+    
+    // 選取所有圖片元素
+    const images = document.querySelectorAll('#markdown-content img');
+    images.forEach(image => {
+        // 將圖片置於容器內
+        const container = document.createElement('div');
+        container.classList.add('image-container');
+        const parent = image.parentNode;
+        parent.insertBefore(container, image);
+        container.appendChild(image);
+    });
+    
     // 提取 Markdown 中的標題，並創建導航欄連結
     const headings = document.querySelectorAll('#markdown-content h2, #markdown-content h3, #markdown-content h4, #markdown-content h5, #markdown-content h6');
     const navElement = document.getElementById('markdown-nav');

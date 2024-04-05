@@ -105,3 +105,7 @@ header {
 .nav-link.level-6 {
     padding-left: 50px; /* 左邊距為 50px */
 }
+.image-container {
+    display: flex;
+    justify-content: left;
+}
